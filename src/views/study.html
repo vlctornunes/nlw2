@@ -30,7 +30,7 @@
                         <div class="select-block">
                             <label for="subject">Matéria</label>
                             <select name="subject" id="subject">
-                                <option value="" disabled="" hidden="">Selecione uma opção</option>
+                                <!--<option>Selecione uma opção</option>-->
 
                                 {% for subject in subjects %}
                                     <option value="{{loop.index}}" {{"selected" if filters.subject == loop.index }}>
@@ -43,7 +43,7 @@
                         <div class="select-block">
                             <label for="weekday">Dia da semana</label>
                             <select name="weekday" id="weekday">
-                                <option value="" disabled="" hidden="">Selecione uma opção</option>
+                                <!--<option>Selecione uma opção</option>-->
 
                                 {% for weekday in weekdays %}
                                     <option value="{{loop.index}}" {{"selected" if filters.subject == loop.index }}>
@@ -63,32 +63,40 @@
             </header>
 
             <main class="">
+
+                {% if proffys == " " %}
                 
-                {% for proffy in proffys %}
+                    <p class="no-results">Nenhum professor encontrado em sua pesquisa :(</p>
 
-                <article class="teacher-item">
-                    <header>
-                        <img 
-                            src="{{proffy.avatar}}" 
-                            alt="{{proffy.name}}">
-                        <div>
-                            <strong>{{proffy.name}}</strong>
-                            <span>{{proffy.subject}}</span>
-                        </div>
-                    </header>
+                {% else %}
+                
+                    {% for proffy in proffys %}
 
-                    <p>{{proffy.bio}}</p>
+                    <article class="teacher-item">
+                        <header>
+                            <img 
+                                src="{{proffy.avatar}}" 
+                                alt="{{proffy.name}}">
+                            <div>
+                                <strong>{{proffy.name}}</strong>
+                                <span>{{proffy.subject}}</span>
+                            </div>
+                        </header>
 
-                    <footer>
-                        <p>Preço/hora:<strong>R$ {{proffy.cost}}</strong>
-                        </p>
-                        <a href="https://api.whatsapp.com/send?1=pt_BR&phone=55{{proffy.whatsapp}}&text=Tenho interesse na sua aula de {{proffy.subject}}, {{proffy.name}}" class="button" target="_blank">
-                            <img src="/images/icons/whatsapp.svg" alt="Whatsapp">Entrar em contato
-                        </a>
-                    </footer>
-                </article>
+                        <p>{{proffy.bio}}</p>
 
-                {% endfor %}
+                        <footer>
+                            <p>Preço/hora:<strong>R$ {{proffy.cost}}</strong>
+                            </p>
+                            <a href="https://api.whatsapp.com/send?1=pt_BR&phone=55{{proffy.whatsapp}}&text=Tenho interesse na sua aula de {{proffy.subject}}, {{proffy.name}}" class="button" target="_blank">
+                                <img src="/images/icons/whatsapp.svg" alt="Whatsapp">Entrar em contato
+                            </a>
+                        </footer>
+                    </article>
+
+                    {% endfor %}
+
+                {% endif %}
 
             </main>
 

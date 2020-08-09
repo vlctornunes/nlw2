@@ -91,15 +91,13 @@
     margin-left: 0.8rem;
 }
 
-@media (max-width: 699px) {
+@media (max-width: 1099px) {
     :root{
         font-size: 40%;
     }
-}
 
-@media (min-width: 700px) {
-    #page-landing #container .logo-container{
-        padding: 50px 0;
+    .hero-image {
+        height: 40rem;
     }
 }
 
