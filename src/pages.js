@@ -33,7 +33,7 @@ async function pageStudy(req, res) {
             AND class_schedule.time_from <= ${timeToMinutes}
             AND class_schedule.time_to > ${timeToMinutes}
         )
-        AND classes.subject = '${filter.subject}'
+        AND classes.subject = '${filters.subject}'
     `
 
     //caso haja erro na hora da consulta ao banco
